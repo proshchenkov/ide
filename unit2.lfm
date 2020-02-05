@@ -1,0 +1,89 @@
+object Form2: TForm2
+  Left = 315
+  Height = 255
+  Top = 194
+  Width = 347
+  Caption = 'Параметры'
+  ClientHeight = 255
+  ClientWidth = 347
+  LCLVersion = '2.0.6.0'
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 255
+    Top = 0
+    Width = 347
+    ActivePage = TabSheet1
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = 'Компиляторы'
+      ClientHeight = 229
+      ClientWidth = 339
+      object Edit1: TEdit
+        Left = 64
+        Height = 21
+        Top = 13
+        Width = 80
+        TabOrder = 0
+        Text = 'fpc'
+      end
+      object Label1: TLabel
+        Left = 8
+        Height = 13
+        Top = 13
+        Width = 30
+        Caption = 'Pascal'
+        ParentColor = False
+      end
+      object Label2: TLabel
+        Left = 8
+        Height = 13
+        Top = 45
+        Width = 23
+        Caption = 'C++'
+        ParentColor = False
+      end
+      object Label3: TLabel
+        Left = 8
+        Height = 13
+        Top = 80
+        Width = 23
+        Caption = 'Java'
+        ParentColor = False
+      end
+      object Label4: TLabel
+        Left = 8
+        Height = 13
+        Top = 112
+        Width = 18
+        Caption = 'TeX'
+        ParentColor = False
+      end
+      object Edit2: TEdit
+        Left = 64
+        Height = 21
+        Top = 45
+        Width = 80
+        TabOrder = 1
+        Text = 'cpp'
+      end
+      object Edit3: TEdit
+        Left = 64
+        Height = 21
+        Top = 80
+        Width = 80
+        TabOrder = 2
+        Text = 'java'
+      end
+      object Edit4: TEdit
+        Left = 64
+        Height = 21
+        Top = 112
+        Width = 80
+        TabOrder = 3
+        Text = 'pdftex'
+      end
+    end
+  end
+end

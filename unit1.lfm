@@ -28,6 +28,7 @@ object Form1: TForm1
     Gutter.MouseActions = <>
     RightGutter.Width = 0
     RightGutter.MouseActions = <>
+    Highlighter = SynPasSyn1
     Keystrokes = <    
       item
         Command = ecUp
@@ -600,6 +601,21 @@ object Form1: TForm1
       object MenuItem22: TMenuItem
         Caption = 'XML'
         OnClick = MenuItem22Click
+      end
+    end
+    object MenuItem20: TMenuItem
+      Caption = 'Запуск'
+      object MenuItem23: TMenuItem
+        Caption = 'Запустить'
+        ShortCut = 120
+        OnClick = MenuItem23Click
+      end
+    end
+    object MenuItem12: TMenuItem
+      Caption = 'Сервис'
+      object MenuItem19: TMenuItem
+        Caption = 'Параметры'
+        OnClick = MenuItem19Click
       end
     end
   end

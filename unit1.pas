@@ -6,14 +6,11 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, SynEdit,
-  SynHighlighterPas, SynCompletion, SynHighlighterCpp, SynHighlighterJava,
-  SynHighlighterJScript, SynHighlighterPerl, SynHighlighterHTML,
-  SynHighlighterXML, SynHighlighterLFM, SynHighlighterDiff,
+  SynHighlighterPas, SynHighlighterCpp, SynHighlighterJava,
+  SynHighlighterJScript, SynHighlighterHTML, SynHighlighterXML,
   synhighlighterunixshellscript, SynHighlighterCss, SynHighlighterPHP,
-  SynHighlighterTeX, SynHighlighterSQL, SynHighlighterPython, SynHighlighterVB,
-  SynHighlighterMulti, SynHighlighterBat, SynHighlighterIni, SynHighlighterPo,
-  SynExportHTML, SynMacroRecorder, PrintersDlgs, uPSComponent, Printers,
-  ComCtrls;
+  SynHighlighterTeX, SynHighlighterSQL, SynHighlighterBat, PrintersDlgs,
+  Printers, ComCtrls, StdCtrls, Buttons, Unit2, Process;
 
 type
 
@@ -24,15 +21,19 @@ type
     MenuItem1: TMenuItem;
     MenuItem10: TMenuItem;
     MenuItem11: TMenuItem;
+    MenuItem12: TMenuItem;
     MenuItem13: TMenuItem;
     MenuItem14: TMenuItem;
     MenuItem15: TMenuItem;
     MenuItem16: TMenuItem;
     MenuItem17: TMenuItem;
     MenuItem18: TMenuItem;
+    MenuItem19: TMenuItem;
     MenuItem2: TMenuItem;
+    MenuItem20: TMenuItem;
     MenuItem21: TMenuItem;
     MenuItem22: TMenuItem;
+    MenuItem23: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
@@ -65,8 +66,10 @@ type
     procedure MenuItem16Click(Sender: TObject);
     procedure MenuItem17Click(Sender: TObject);
     procedure MenuItem18Click(Sender: TObject);
+    procedure MenuItem19Click(Sender: TObject);
     procedure MenuItem21Click(Sender: TObject);
     procedure MenuItem22Click(Sender: TObject);
+    procedure MenuItem23Click(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
     procedure MenuItem3Click(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
@@ -85,6 +88,7 @@ type
 
 var
   Form1: TForm1;
+  filename: string;
 
 implementation
 
@@ -95,7 +99,11 @@ implementation
 procedure TForm1.MenuItem2Click(Sender: TObject);
 begin
   if OpenDialog1.Execute then
+  begin
     SynEdit1.Lines.LoadFromFile(OpenDialog1.FileName);
+    filename := OpenDialog1.FileName;
+    StatusBar1.Panels[1].Text := OpenDialog1.FileName;
+  end;
 end;
 
 procedure TForm1.MenuItem10Click(Sender: TObject);
@@ -242,6 +250,11 @@ begin
   MenuItem22.Checked := False;
 end;
 
+procedure TForm1.MenuItem19Click(Sender: TObject);
+begin
+  Form2.Show;
+end;
+
 procedure TForm1.MenuItem21Click(Sender: TObject);
 begin
   SynEdit1.Highlighter := SynBatSyn1;
@@ -278,10 +291,25 @@ begin
   MenuItem22.Checked := True;
 end;
 
+procedure TForm1.MenuItem23Click(Sender: TObject);
+var
+  AProcess: TProcess;
+begin
+  AProcess := TProcess.Create(nil);
+  AProcess.Commandline := 'fpc ' + filename;
+  AProcess.Execute;
+  AProcess.Commandline := filename.Replace('.pas', '.exe');
+  AProcess.Execute;
+end;
+
 procedure TForm1.MenuItem3Click(Sender: TObject);
 begin
   if SaveDialog1.Execute then
+  begin
     SynEdit1.Lines.SaveToFile(SaveDialog1.FileName);
+    filename := SaveDialog1.FileName;
+    StatusBar1.Panels[1].Text := SaveDialog1.FileName;
+  end;
 end;
 
 procedure TForm1.MenuItem4Click(Sender: TObject);
