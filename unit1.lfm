@@ -10,7 +10,7 @@ object Form1: TForm1
   LCLVersion = '2.0.6.0'
   inline SynEdit1: TSynEdit
     Left = 0
-    Height = 359
+    Height = 266
     Top = 0
     Width = 430
     Align = alClient
@@ -515,12 +515,35 @@ object Form1: TForm1
     Width = 430
     Panels = <    
       item
-        Width = 100
+        Text = 'Pascal'
+        Width = 50
+      end    
+      item
+        Width = 80
       end    
       item
         Width = 50
       end>
     SimplePanel = False
+  end
+  object Memo1: TMemo
+    Left = 0
+    Height = 90
+    Top = 269
+    Width = 430
+    Align = alBottom
+    ReadOnly = True
+    ScrollBars = ssAutoBoth
+    TabOrder = 2
+  end
+  object Splitter1: TSplitter
+    Cursor = crVSplit
+    Left = 0
+    Height = 3
+    Top = 266
+    Width = 430
+    Align = alBottom
+    ResizeAnchor = akBottom
   end
   object MainMenu1: TMainMenu
     left = 24
@@ -566,10 +589,6 @@ object Form1: TForm1
         Caption = 'Java'
         OnClick = MenuItem10Click
       end
-      object MenuItem11: TMenuItem
-        Caption = 'JS'
-        OnClick = MenuItem11Click
-      end
       object MenuItem13: TMenuItem
         Caption = 'HTML'
         OnClick = MenuItem13Click
@@ -578,29 +597,9 @@ object Form1: TForm1
         Caption = 'Shell'
         OnClick = MenuItem14Click
       end
-      object MenuItem15: TMenuItem
-        Caption = 'CSS'
-        OnClick = MenuItem15Click
-      end
-      object MenuItem16: TMenuItem
-        Caption = 'PHP'
-        OnClick = MenuItem16Click
-      end
       object MenuItem17: TMenuItem
         Caption = 'TeX'
         OnClick = MenuItem17Click
-      end
-      object MenuItem18: TMenuItem
-        Caption = 'SQL'
-        OnClick = MenuItem18Click
-      end
-      object MenuItem21: TMenuItem
-        Caption = 'BAT'
-        OnClick = MenuItem21Click
-      end
-      object MenuItem22: TMenuItem
-        Caption = 'XML'
-        OnClick = MenuItem22Click
       end
     end
     object MenuItem20: TMenuItem
@@ -629,6 +628,7 @@ object Form1: TForm1
     top = 72
   end
   object OpenDialog1: TOpenDialog
+    Filter = 'Файлы Паскаля (*.pas,*.dpr,*.dpk,*.inc)|*.pas;*.dpr;*.dpk;*.inc'
     left = 24
     top = 184
   end
@@ -636,51 +636,19 @@ object Form1: TForm1
     DefaultFilter = 'Документ HTML (*.htm,*.html)|*.htm;*.html'
     Enabled = False
     left = 104
-    top = 240
-  end
-  object SynXMLSyn1: TSynXMLSyn
-    DefaultFilter = 'Документ XML (*.xml,*.xsd,*.xsl,*.xslt,*.dtd)|*.xml;*.xsd;*.xsl;*.xslt;*.dtd'
-    Enabled = False
-    WantBracesParsed = False
-    left = 216
-    top = 72
+    top = 184
   end
   object SynUNIXShellScriptSyn1: TSynUNIXShellScriptSyn
     DefaultFilter = 'Сценарии UNIX Shell (*.sh)|*.sh'
     Enabled = False
-    left = 216
-    top = 128
-  end
-  object SynCssSyn1: TSynCssSyn
-    DefaultFilter = 'Каскадированные таблицы стилей (*.css)|*.css'
-    Enabled = False
-    left = 216
-    top = 184
-  end
-  object SynPHPSyn1: TSynPHPSyn
-    DefaultFilter = 'Файлы PHP (*.php,*.php3,*.phtml,*.inc)|*.php;*.php3;*.phtml;*.inc'
-    Enabled = False
-    left = 216
+    left = 104
     top = 240
   end
   object SynTeXSyn1: TSynTeXSyn
     DefaultFilter = 'Файлы TeX (*.tex)|*.tex'
     Enabled = False
-    left = 216
-    top = 296
-  end
-  object SynSQLSyn1: TSynSQLSyn
-    DefaultFilter = 'Файлы SQL (*.sql)|*.sql'
-    Enabled = False
-    SQLDialect = sqlSybase
     left = 104
     top = 296
-  end
-  object SynBatSyn1: TSynBatSyn
-    DefaultFilter = 'Пакетные файлы MS-DOS (*.bat;*.cmd)|*.bat;*.cmd'
-    Enabled = False
-    left = 216
-    top = 16
   end
   object SynPasSyn1: TSynPasSyn
     Enabled = False
@@ -701,9 +669,20 @@ object Form1: TForm1
     left = 104
     top = 128
   end
-  object SynJScriptSyn1: TSynJScriptSyn
-    Enabled = False
-    left = 104
-    top = 184
+  object Process1: TProcess
+    Active = False
+    Options = []
+    Priority = ppNormal
+    StartupOptions = []
+    ShowWindow = swoNone
+    WindowColumns = 0
+    WindowHeight = 0
+    WindowLeft = 0
+    WindowRows = 0
+    WindowTop = 0
+    WindowWidth = 0
+    FillAttribute = 0
+    left = 176
+    top = 16
   end
 end
