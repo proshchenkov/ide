@@ -10,7 +10,7 @@ object Form1: TForm1
   LCLVersion = '2.0.6.0'
   inline SynEdit1: TSynEdit
     Left = 0
-    Height = 266
+    Height = 304
     Top = 0
     Width = 430
     Align = alClient
@@ -528,8 +528,8 @@ object Form1: TForm1
   end
   object Memo1: TMemo
     Left = 0
-    Height = 90
-    Top = 269
+    Height = 55
+    Top = 304
     Width = 430
     Align = alBottom
     ReadOnly = True
@@ -539,8 +539,8 @@ object Form1: TForm1
   object Splitter1: TSplitter
     Cursor = crVSplit
     Left = 0
-    Height = 3
-    Top = 266
+    Height = 0
+    Top = 304
     Width = 430
     Align = alBottom
     ResizeAnchor = akBottom
@@ -614,6 +614,7 @@ object Form1: TForm1
       Caption = 'Сервис'
       object MenuItem19: TMenuItem
         Caption = 'Параметры'
+        ShortCut = 123
         OnClick = MenuItem19Click
       end
     end

@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, SynEdit,
   SynHighlighterPas, SynHighlighterCpp, SynHighlighterJava,
   SynHighlighterHTML, synhighlighterunixshellscript, SynHighlighterTeX,
-  PrintersDlgs, Printers, ComCtrls, StdCtrls, Buttons, ExtCtrls, Unit2, Process;
+  PrintersDlgs, Printers, ComCtrls, StdCtrls, Buttons, ExtCtrls, Unit2, Process, LCLIntf;
 
 type
 
@@ -93,6 +93,7 @@ procedure TForm1.MenuItem10Click(Sender: TObject);
 begin
   SynEdit1.Highlighter := SynJavaSyn1;
   SaveDialog1.Filter := SynEdit1.Highlighter.DefaultFilter;
+  OpenDialog1.Filter := SynEdit1.Highlighter.DefaultFilter;
   StatusBar1.Panels[0].Text := (Sender as TMenuItem).Caption;
 end;
 
@@ -100,6 +101,7 @@ procedure TForm1.MenuItem13Click(Sender: TObject);
 begin
   SynEdit1.Highlighter := SynHTMLSyn1;
   SaveDialog1.Filter := SynEdit1.Highlighter.DefaultFilter;
+  OpenDialog1.Filter := SynEdit1.Highlighter.DefaultFilter;
   StatusBar1.Panels[0].Text := (Sender as TMenuItem).Caption;
 end;
 
@@ -107,6 +109,7 @@ procedure TForm1.MenuItem14Click(Sender: TObject);
 begin
   SynEdit1.Highlighter := SynUNIXShellScriptSyn1;
   SaveDialog1.Filter := SynEdit1.Highlighter.DefaultFilter;
+  OpenDialog1.Filter := SynEdit1.Highlighter.DefaultFilter;
   StatusBar1.Panels[0].Text := (Sender as TMenuItem).Caption;
 end;
 
@@ -114,6 +117,7 @@ procedure TForm1.MenuItem17Click(Sender: TObject);
 begin
   SynEdit1.Highlighter := SynTeXSyn1;
   SaveDialog1.Filter := SynEdit1.Highlighter.DefaultFilter;
+  OpenDialog1.Filter := SynEdit1.Highlighter.DefaultFilter;
   StatusBar1.Panels[0].Text := (Sender as TMenuItem).Caption;
 end;
 
@@ -126,23 +130,31 @@ procedure TForm1.MenuItem23Click(Sender: TObject);
 var
   s: ansistring;
 begin
-  {Process1.Executable := 'fpc';
-  Process1.CurrentDirectory := 'C:\Users\pvm\Documents\pascal\';
-  Process1.Parameters.Add('237.pas');
-  Process1.Execute;
-  Process1.Executable := 'C:\Users\pvm\Documents\pascal\237.exe';
-  Process1.Parameters.Text := '';
-  Process1.Execute;}
-
-  {Process1.Commandline := 'fpc ' + filename;
-  Process1.Execute;
-  Process1.Commandline := filename.Replace('.pas', '.exe');
-  Process1.Execute;}
-
-  RunCommand('fpc', [filename], s);
-  Memo1.Lines.Add(s);
-  RunCommand(filename.Replace('.pas', '.exe'), [''], s);
-  Memo1.Lines.Add(s);
+  if StatusBar1.Panels[0].Text = 'Pascal' then
+  begin
+    RunCommand(Form2.Edit1.Text, [filename], s);
+    Memo1.Lines.Add(s);
+    RunCommand(filename.Replace('.pas', '.exe'), [''], s);
+    Memo1.Lines.Add(s);
+  end;
+  if StatusBar1.Panels[0].Text = 'HTML' then
+  begin
+    OpenURL(filename);
+  end;
+  if StatusBar1.Panels[0].Text = 'Java' then
+  begin
+    RunCommand('javac', [filename], s);
+    Memo1.Lines.Add(s);
+    RunCommand('java', [filename.Replace('.java', '')], s);
+    Memo1.Lines.Add(s);
+  end;
+  if StatusBar1.Panels[0].Text = 'TeX' then
+  begin
+    RunCommand(Form2.Edit4.Text, [filename], s);
+    Memo1.Lines.Add(s);
+    RunCommand(filename.Replace('.tex', '.pdf'), [''], s);
+    Memo1.Lines.Add(s);
+  end;
 end;
 
 procedure TForm1.MenuItem3Click(Sender: TObject);
@@ -191,6 +203,7 @@ procedure TForm1.MenuItem8Click(Sender: TObject);
 begin
   SynEdit1.Highlighter := SynPasSyn1;
   SaveDialog1.Filter := SynEdit1.Highlighter.DefaultFilter;
+  OpenDialog1.Filter := SynEdit1.Highlighter.DefaultFilter;
   StatusBar1.Panels[0].Text := (Sender as TMenuItem).Caption;
 end;
 
@@ -198,6 +211,7 @@ procedure TForm1.MenuItem9Click(Sender: TObject);
 begin
   SynEdit1.Highlighter := SynCppSyn1;
   SaveDialog1.Filter := SynEdit1.Highlighter.DefaultFilter;
+  OpenDialog1.Filter := SynEdit1.Highlighter.DefaultFilter;
   StatusBar1.Panels[0].Text := (Sender as TMenuItem).Caption;
 end;
 
